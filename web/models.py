@@ -15,7 +15,7 @@ class Course(models.Model):
     subscribers = models.IntegerField()
     info = models.TextField()
     img = models.ImageField(upload_to='courses/', null=True, blank=True)
-    list = models.ForeignKey(CourseList)
+    list = models.ForeignKey(CourseList, on_delete=models.CASCADE)
 
 
 class Lesson(models.Model):
@@ -54,7 +54,7 @@ class LessonArticle(models.Model):
 class LessonTest(models.Model):
     title = models.CharField(max_length=256)
     is_completed = models.BooleanField(default=False)
-    complete_percent = models.IntegerField(max_length=100)
+    complete_percent = models.IntegerField()
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -62,14 +62,14 @@ class LessonTest(models.Model):
 class TestQuestion(models.Model):
     question = models.CharField(max_length=1024)
     is_complete = models.BooleanField(default=False)
-    test = models.ForeignKey(LessonTest)
+    test = models.ForeignKey(LessonTest, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class TestAnswer(models.Model):
     answer = models.CharField(max_length=1024)
     is_correct = models.BooleanField(default=False)
-    question = models.ForeignKey(TestQuestion)
+    question = models.ForeignKey(TestQuestion, on_delete=models.CASCADE)
 
 
 

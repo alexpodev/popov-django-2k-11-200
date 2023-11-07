@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: studyplatform
+      POSTGRES_USER: studyplatform
+      POSTGRES_PASSWORD: studyplatform
+
+volumes:
+  db:
