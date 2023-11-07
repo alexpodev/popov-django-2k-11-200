@@ -16,6 +16,7 @@ class Course(models.Model):
     info = models.TextField()
     img = models.ImageField(upload_to='courses/', null=True, blank=True)
     list = models.ForeignKey(CourseList, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Lesson(models.Model):
